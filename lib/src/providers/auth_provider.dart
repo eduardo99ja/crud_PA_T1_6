@@ -22,43 +22,28 @@ class AuthProvider {
     return true;
   }
 
-  // void checkIfUserIsLogged(BuildContext context, String typeUser) {
-  //   FirebaseAuth.instance.authStateChanges().listen((User user) {
-  //     // QUE EL USUARIO ESTA LOGEADO
-  //     if (user != null && typeUser != null) {
-
-  //       if (typeUser == 'client') {
-  //         Navigator.pushNamedAndRemoveUntil(context, 'client/map', (route) => false);
-  //       }
-  //       else {
-  //         Navigator.pushNamedAndRemoveUntil(context, 'driver/map', (route) => false);
-  //       }
-  //       print('El usuario esta logeado');
-
-  //     }
-  //     else {
-  //       print('El usuario no esta logeado');
-  //     }
-  //   });
-  // }
-
   Future<bool> login(String email, String password) async {
-    String errorMessage;
+    String? errorMessage;
 
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      if (e.code == 'user-not-found') {
+        errorMessage = 'Ningun usuario encontrado con el email $email.';
+      } else if (e.code == 'wrong-password') {
+        errorMessage = 'Contraseña incorrecta';
+      } else if (e.code == 'too-many-requests') {
+        errorMessage = 'Demasiados peticiones';
+      }
     } catch (error) {
       print(error);
-      // CORREO INVALIDO
-      // PASSWORD INCORRECTO
-      // NO HAY CONEXION A INTERNET
-      // errorMessage = error.code;
     }
 
-    // if (errorMessage != null) {
-    //   return Future.error(errorMessage);
-    // }
+    if (errorMessage != null) {
+      return Future.error(errorMessage);
+    }
 
     return true;
   }
