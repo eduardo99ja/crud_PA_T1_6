@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "826011934509",
+    "project_id": "gamestore-bc552",
+    "storage_bucket": "gamestore-bc552.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826011934509:android:9259cf46af36c3a3643da4",
+        "android_client_info": {
+          "package_name": "com.example.my_crud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "826011934509-j7mvj2ajl4i8sor2ll5h8gbp4mah5gac.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.my_crud",
+            "certificate_hash": "26a1136ed8275eae490afddd2a0274247bd6b85c"
+          }
+        },
+        {
+          "client_id": "826011934509-b1tug7bpfhnurlo1n1i4ve5gla43stq5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCicm3o4lxsPgqb3rQENKJXsk1YzYeF9mQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "826011934509-b1tug7bpfhnurlo1n1i4ve5gla43stq5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
