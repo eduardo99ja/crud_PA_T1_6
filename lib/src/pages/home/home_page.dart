@@ -120,7 +120,13 @@ class _HomePageState extends State<HomePage> {
                                 )
                               ],
                             ),
-                            onTap: () => _verGame(context, items[position]),
+                            onTap: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => InfoGame(
+                                      game: items[
+                                          position])); //Using anonimous function
+                            },
                           ),
                         ),
                       ),

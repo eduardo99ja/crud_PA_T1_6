@@ -27,6 +27,7 @@ class _InfoGameState extends State<InfoGame> {
       appBar: AppBar(
         title: Text('Informacion Game'),
         backgroundColor: Colors.greenAccent,
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         height: 400.0,
