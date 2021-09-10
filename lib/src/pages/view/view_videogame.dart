@@ -47,7 +47,8 @@ class _ScreenGameState extends State<ScreenGame> {
                   controller: nameController,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
                   decoration: InputDecoration(
-                      icon: Icon(Icons.person), labelText: 'Titulo del juego'),
+                      icon: Icon(Icons.subtitles),
+                      labelText: 'Titulo del juego'),
                   keyboardType: TextInputType.text,
                 ),
                 Padding(padding: EdgeInsets.only(top: 8.0)),
@@ -56,7 +57,7 @@ class _ScreenGameState extends State<ScreenGame> {
                   controller: devController,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
                   decoration: InputDecoration(
-                      icon: Icon(Icons.person),
+                      icon: Icon(Icons.business_outlined),
                       labelText: 'Compañia desarrolladora'),
                   keyboardType: TextInputType.text,
                 ),
@@ -66,7 +67,7 @@ class _ScreenGameState extends State<ScreenGame> {
                   controller: priceController,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
                   decoration: InputDecoration(
-                      icon: Icon(Icons.person), labelText: 'Precio'),
+                      icon: Icon(Icons.price_check), labelText: 'Precio'),
                   keyboardType: TextInputType.text,
                 ),
                 Padding(padding: EdgeInsets.only(top: 8.0)),
@@ -75,7 +76,7 @@ class _ScreenGameState extends State<ScreenGame> {
                   controller: detailsController,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
                   decoration: InputDecoration(
-                      icon: Icon(Icons.person), labelText: 'Detalles'),
+                      icon: Icon(Icons.description), labelText: 'Detalles'),
                   keyboardType: TextInputType.text,
                 ),
                 Padding(padding: EdgeInsets.only(top: 8.0)),
@@ -84,7 +85,7 @@ class _ScreenGameState extends State<ScreenGame> {
                   controller: ageController,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
                   decoration: InputDecoration(
-                      icon: Icon(Icons.person),
+                      icon: Icon(Icons.calendar_today_sharp),
                       labelText: 'Año de lanzamiento'),
                   keyboardType: TextInputType.text,
                 ),
