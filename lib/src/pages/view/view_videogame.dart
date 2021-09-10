@@ -2,6 +2,8 @@ import 'package:my_crud/src/models/game.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
+import 'package:my_crud/src/utils/colors.dart' as utils;
+
 class ScreenGame extends StatefulWidget {
   final Game game;
   const ScreenGame({Key? key, required this.game}) : super(key: key);
@@ -35,7 +37,7 @@ class _ScreenGameState extends State<ScreenGame> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Videojuegos en la base de datos'),
-        backgroundColor: Colors.green[100],
+        backgroundColor: utils.Colors.primaryColor,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20.0),
@@ -68,7 +70,7 @@ class _ScreenGameState extends State<ScreenGame> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
                   decoration: InputDecoration(
                       icon: Icon(Icons.price_check), labelText: 'Precio'),
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.number,
                 ),
                 Padding(padding: EdgeInsets.only(top: 8.0)),
                 Divider(),
@@ -87,7 +89,7 @@ class _ScreenGameState extends State<ScreenGame> {
                   decoration: InputDecoration(
                       icon: Icon(Icons.calendar_today_sharp),
                       labelText: 'Año de lanzamiento'),
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.datetime,
                 ),
                 Padding(padding: EdgeInsets.only(top: 8.0)),
                 Divider(),
@@ -112,8 +114,11 @@ class _ScreenGameState extends State<ScreenGame> {
                       }
                     },
                     child: (widget.game.id != null)
-                        ? Text('Actualizar')
-                        : Text('Agregar')),
+                        ? Text('Actualizar',
+                            style: TextStyle(color: utils.Colors.primaryColor))
+                        : Text('Agregar',
+                            style:
+                                TextStyle(color: utils.Colors.primaryColor))),
               ],
             ),
           ),
