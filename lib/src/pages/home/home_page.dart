@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'dart:async';
 
 import 'package:my_crud/src/models/game.dart';
 import 'package:my_crud/src/pages/info/info_videogame.dart';
 import 'package:my_crud/src/pages/view/view_videogame.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:my_crud/src/providers/auth_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,14 +19,19 @@ class _HomePageState extends State<HomePage> {
   List<Game> items = [];
   StreamSubscription<Event>? addGames;
   StreamSubscription<Event>? changeGames;
+  late AuthProvider _authProvider;
 
   @override
   void initState() {
     super.initState();
+    _authProvider = new AuthProvider();
     items = [];
 
     addGames = gameRef.onChildAdded.listen(_addGames);
     changeGames = gameRef.onChildChanged.listen(_updateGames);
+    SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
+      checkIfUserIsAuth(context);
+    });
   }
 
   @override
@@ -43,6 +50,19 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text('Listado Agenda'),
           backgroundColor: Colors.orangeAccent,
+          actions: [
+            GestureDetector(
+              onTap: () async {
+                await _authProvider.signOut();
+                Navigator.pushNamedAndRemoveUntil(
+                    context, 'login', (route) => false);
+              },
+              child: Container(
+                margin: EdgeInsets.only(right: 10),
+                child: Icon(Icons.logout),
+              ),
+            )
+          ],
         ),
         body: Center(
           child: ListView.builder(
@@ -57,48 +77,57 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     children: [
                       Expanded(
-                        child: ListTile(
-                          title: Text(
-                            '${items[position].gamename}',
-                            style: TextStyle(
-                              color: Colors.redAccent,
-                              fontSize: 18.0,
+                        child: Dismissible(
+                          key: Key(items[position].id!),
+                          direction: DismissDirection.startToEnd,
+                          onDismissed: (_) =>
+                              _borrarGame(context, items[position], position),
+                          background: Container(
+                              padding: EdgeInsets.only(left: 8.0),
+                              color: Colors.red,
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text('Eliminar juego',
+                                    style: TextStyle(color: Colors.white)),
+                              )),
+                          child: ListTile(
+                            title: Text(
+                              '${items[position].gamename}',
+                              style: TextStyle(
+                                color: Colors.redAccent,
+                                fontSize: 18.0,
+                              ),
                             ),
-                          ),
-                          subtitle: Text(
-                            '${items[position].gamedev}',
-                            style: TextStyle(
-                              color: Colors.redAccent,
-                              fontSize: 18.0,
+                            subtitle: Text(
+                              '${items[position].gamedev}',
+                              style: TextStyle(
+                                color: Colors.redAccent,
+                                fontSize: 18.0,
+                              ),
                             ),
-                          ),
-                          leading: Column(
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.amberAccent,
-                                radius: 17.0,
-                                child: Text(
-                                  '${position + 1}',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 21.0,
+                            leading: Column(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: Colors.amberAccent,
+                                  radius: 17.0,
+                                  child: Text(
+                                    '${position + 1}',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 21.0,
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
+                                )
+                              ],
+                            ),
+                            onTap: () => _verGame(context, items[position]),
                           ),
-                          onTap: () => infoGame(context, items[position]),
                         ),
                       ),
                       IconButton(
-                        // onPressed: () => _showDialog(context, position),
-                        onPressed: () =>
-                            _borrarGame(context, items[position], position),
-                        icon: Icon(Icons.delete, color: Colors.purpleAccent),
-                      ),
-                      IconButton(
-                        onPressed: () => _verGame(context, items[position]),
-                        icon: Icon(Icons.info, color: Colors.purpleAccent),
+                        onPressed: () => infoGame(context, items[position]),
+                        icon: Icon(Icons.edit_rounded,
+                            color: Colors.purpleAccent),
                       ),
                     ],
                   ),
@@ -163,5 +192,14 @@ class _HomePageState extends State<HomePage> {
         builder: (_) => ScreenGame(game: Game()),
       ),
     );
+  }
+
+  void checkIfUserIsAuth(BuildContext context) {
+    bool isSigned = _authProvider.isSignedIn();
+    if (isSigned) {
+      print('esta loggueado');
+    } else {
+      Navigator.pushNamedAndRemoveUntil(context, 'login', (route) => false);
+    }
   }
 }

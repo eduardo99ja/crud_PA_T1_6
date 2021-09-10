@@ -73,8 +73,7 @@ class AuthProvider {
     return true;
   }
 
-  // Future<void> signOut() async {
-  //   return Future.wait([_firebaseAuth.signOut()]);
-  // }
-
+  Future signOut() async {
+    return Future.wait([_firebaseAuth.signOut()]);
+  }
 }
