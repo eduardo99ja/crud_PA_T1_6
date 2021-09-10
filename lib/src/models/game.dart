@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:firebase_database/firebase_database.dart';
+
 Game gameFromJson(String str) => Game.fromJson(json.decode(str));
 
 String gameToJson(Game data) => json.encode(data.toJson());
@@ -37,4 +39,13 @@ class Game {
         "details": details,
         "age": age,
       };
+
+  Game.fromSnapShot(DataSnapshot snapshot) {
+    id = snapshot.key;
+    gamename = snapshot.value['gamename'];
+    gamedev = snapshot.value["gamedev"];
+    price = snapshot.value['price'];
+    details = snapshot.value['details'];
+    age = snapshot.value['age'];
+  }
 }
