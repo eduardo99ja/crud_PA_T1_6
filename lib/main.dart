@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Catalogo de juegos',
-      initialRoute: 'login',
+      initialRoute: 'home',
       theme: ThemeData(
           fontFamily: 'NimbusSans',
           appBarTheme: AppBarTheme(elevation: 0),
