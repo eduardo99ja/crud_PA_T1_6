@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: '',
-      initialRoute: 'register',
+      initialRoute: 'home',
       theme: ThemeData(
           fontFamily: 'NimbusSans',
           appBarTheme: AppBarTheme(elevation: 0),
