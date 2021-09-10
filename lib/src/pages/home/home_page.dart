@@ -8,6 +8,8 @@ import 'package:my_crud/src/pages/view/view_videogame.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:my_crud/src/providers/auth_provider.dart';
 
+import 'package:my_crud/src/utils/colors.dart' as utils;
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -49,7 +51,7 @@ class _HomePageState extends State<HomePage> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Listado Agenda'),
-          backgroundColor: Colors.orangeAccent,
+          backgroundColor: utils.Colors.primaryColor,
           actions: [
             GestureDetector(
               onTap: () async {
@@ -94,21 +96,23 @@ class _HomePageState extends State<HomePage> {
                             title: Text(
                               '${items[position].gamename}',
                               style: TextStyle(
-                                color: Colors.redAccent,
+                                color: Colors.grey[900],
                                 fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                             subtitle: Text(
                               '${items[position].gamedev}',
                               style: TextStyle(
-                                color: Colors.redAccent,
+                                color: Colors.grey[600],
                                 fontSize: 18.0,
+                                fontStyle: FontStyle.italic,
                               ),
                             ),
                             leading: Column(
                               children: [
                                 CircleAvatar(
-                                  backgroundColor: Colors.amberAccent,
+                                  backgroundColor: Colors.grey,
                                   radius: 17.0,
                                   child: Text(
                                     '${position + 1}',
@@ -132,8 +136,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       IconButton(
                         onPressed: () => infoGame(context, items[position]),
-                        icon: Icon(Icons.edit_rounded,
-                            color: Colors.purpleAccent),
+                        icon: Icon(Icons.edit_rounded, color: Colors.black),
                       ),
                     ],
                   ),
@@ -143,11 +146,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add, color: Colors.red[100]),
-          backgroundColor: Colors.deepOrangeAccent,
+          child: Icon(Icons.add, color: Colors.white),
+          backgroundColor: utils.Colors.primaryColor,
           onPressed: () => agregarGame(context),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }
