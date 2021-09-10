@@ -36,7 +36,7 @@ class _InfoGameState extends State<InfoGame> {
             child: Column(
               children: [
                 Text(
-                  'Nombre: ${widget.game.gamename}',
+                  'Titulo del juego: ${widget.game.gamename}',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Padding(
@@ -44,7 +44,7 @@ class _InfoGameState extends State<InfoGame> {
                 ),
                 Divider(),
                 Text(
-                  'Nombre: ${widget.game.gamedev}',
+                  'Compañia desarrolladora: ${widget.game.gamedev}',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Padding(
@@ -52,7 +52,7 @@ class _InfoGameState extends State<InfoGame> {
                 ),
                 Divider(),
                 Text(
-                  'Nombre: ${widget.game.price}',
+                  'Precio: ${widget.game.price}',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Padding(
@@ -60,7 +60,7 @@ class _InfoGameState extends State<InfoGame> {
                 ),
                 Divider(),
                 Text(
-                  'Nombre: ${widget.game.details}',
+                  'Detalles: ${widget.game.details}',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Padding(
@@ -68,7 +68,7 @@ class _InfoGameState extends State<InfoGame> {
                 ),
                 Divider(),
                 Text(
-                  'Nombre: ${widget.game.age}',
+                  'Año de lanzamiento: ${widget.game.age}',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Padding(
