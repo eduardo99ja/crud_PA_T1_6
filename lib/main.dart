@@ -23,13 +23,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-<<<<<<< HEAD
       title: 'Catalogo de juegos',
-      initialRoute: 'login',
-=======
-      title: '',
       initialRoute: 'home',
->>>>>>> 703b7af7e9a319dc7e2dea9ba8c0c4c4f1cca5de
       theme: ThemeData(
           fontFamily: 'NimbusSans',
           appBarTheme: AppBarTheme(elevation: 0),
